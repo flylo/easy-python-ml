@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: jupyter-server-pod
+  labels:
+    name: jupyter-server-pod
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: jupyter
+        role: service
+        tier: backend
+    spec:
+      containers:
+      - name: jupyter
+        image: NOTEBOOK_IMAGE
+        args:
+          - auth_and_start.sh
+          - jupyter
+          - notebook
+        env:
+        - name: GRANT_SUDO
+          value: "yes"
+        volumeMounts:
+        - name: persistent-data
+          mountPath: /home/jovyan/persistent_data
+        ports:
+        - containerPort: 8888
+          hostPort: 8888
+          hostIP: 127.0.0.1
+
+      volumes:
+      - name: persistent-data
+        gcePersistentDisk:
+          pdName: DISK_NAME
+          fsType: ext4
