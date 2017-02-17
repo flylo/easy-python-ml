@@ -38,7 +38,7 @@ ENV PATH google-cloud-sdk/bin:$PATH
 
 USER root
 
-ADD midi_ml ${HOME}/midi_ml
+ADD easy_ml ${HOME}/easy_ml
 ADD test ${HOME}/test
 ADD setup.py ${HOME}/setup.py
 

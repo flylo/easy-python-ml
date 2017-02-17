@@ -7,7 +7,7 @@ setup(
     version='0.0.1',
     author='Zac',
     packages=[
-        'midi_ml',
-        'midi_ml.tools'
+        'easy_ml',
+        'easy_ml.tools'
     ]
 )
