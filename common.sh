@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-image_version="0.0.3"
+image_version="0.0.4"
 project_name=`python scripts/lookup_value_from_json google_service_key.json project_id`
 repo_name="gcr.io/${project_name}/easy_ml"
 user_name="$( echo $USER | tr '[:upper:]' '[:lower:]')"
@@ -81,6 +81,17 @@ deploy() {
     make_disk
     make_cluster
     make_pod
+}
+
+tear_down() {
+    if gcloud container clusters list | grep -q "^${cluster_name}[[:space:]]"
+    then
+        echo "Deleting cluster ${cluster_name}"
+        gcloud container clusters delete ${cluster_name}
+    else
+        echo "Cluster ${cluster_name} not found"
+        exit 1
+    fi
 }
 
 port_forward() {
