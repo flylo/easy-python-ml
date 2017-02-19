@@ -1,5 +1,7 @@
-# easy-python-ml:0.0.1
-Repository to provide simple model deployment that can be run as either a pipeline or an interactive notebook on GCP.
+# easy-python-ml:0.0.3
+Quickly and easily spin up a notebook server in GCP.
+
+This repository includes utility functions for reading data from Google Cloud Storage.
 
 
 ## Pre-Requisites
@@ -19,14 +21,24 @@ Run `pip install --upgrade bumpversion`
 Use the `deployment.sh` script to orchestrate docker and run the notebook.
 
 ```bash
-(.venv) ➜  sh deployment.sh
-Usage: sh deployment.sh [build|run|local-notebook]
+(.venv) ➜  easy-python-ml git:(master) sh deployment.sh
+Usage: sh deployment.sh [patch|build|push|deploy|port-forward|run-local-notebook]
 ```
+
+  * To bump the version after making small changes, run `sh deployment.sh patch`
 
   * To build the docker image, run `sh deployment.sh build`.
 
-  * To run the image as a container, run `sh deployment.sh run`
+  * To push the docker image to the remote container repository, run `sh deployment.sh push`
 
-  * To get a link to the notebook on your local machine, run `sh deployment.sh local-notebook`
+  * To deploy the notebook server, run `sh deployment.sh deploy`. This will:
+
+    1. Make a new persistent disk (or use an existing one from a previous run)
+    2. Spin up a Kubernetes cluster (or use an existing one from a previous run)
+    3. Deploy a "pod" (server) to host the notebook on
+
+  * To port-forward into a running pod, run `sh deployment.sh port-forward`
+
+  * To run the notebook locally, run `sh deployment.sh run-local-notebook`
 
   **NOTE** Notebooks created on your local machine will not save automatically - they must be downloaded to persist.
