@@ -53,4 +53,4 @@ sh sync.sh get <remote_path> <local_path>
 sh sync.sh push <local_path> <remote_path>
 ```
 
-**NOTE** <remote_path> is always relative to "/home/jovyan/persistent_data"
+**NOTE** `<remote_path>` is always relative to "/home/jovyan/persistent_data"
