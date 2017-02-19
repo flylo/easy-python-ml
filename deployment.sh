@@ -1,30 +1,32 @@
 #!/usr/bin/env bash
 
-image_version="midi-ml:0.0.1"
+source common.sh
 
-usage="Usage: sh deployment.sh [build|run|local-notebook]"
+usage="Usage: sh deployment.sh [patch|build|push|deploy|port-forward|run-local-notebook]"
 
 if [ $# -ne 1 ];
     then echo "${usage}"
     exit 1
 fi
 
-if [ $1 = "build" ]
+if [ $1 = "patch" ]
 then
-    docker build -t ${image_version} .
-
-elif [ $1 = "run" ]
+    patch
+elif [ $1 = "build" ]
 then
-    docker run -it -p 8888:8888 ${image_version}
-
-elif [ $1 = "local-notebook" ]
+    build
+elif [ $1 = "push" ]
 then
-    echo "notebook running at `docker-machine ls | grep default | \
-            awk '{print $5}' | \
-            awk '{ gsub("tcp://", "http://") ; system( "echo "  $0)}' | \
-            awk '{ gsub(":2376", ":8888") ; system("echo " $0)}'`"
-
+    push
+elif [ $1 = "deploy" ]
+then
+    deploy
+elif [ $1 = "port-forward" ]
+then
+    port_forward
+elif [ $1 = "run-local-notebook" ]
+then
+    run_local_notebook
 else
     echo "${usage}"
-
 fi
