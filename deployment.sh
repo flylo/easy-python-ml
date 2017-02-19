@@ -2,7 +2,7 @@
 
 source common.sh
 
-usage="Usage: sh deployment.sh [patch|build|push|deploy|port-forward|run-local-notebook]"
+usage="Usage: sh deployment.sh [patch|build|push|deploy|port-forward|tear-down|run-local-notebook]"
 
 if [ $# -ne 1 ];
     then echo "${usage}"
@@ -24,6 +24,9 @@ then
 elif [ $1 = "port-forward" ]
 then
     port_forward
+elif [ $1 = "tear-down" ]
+then
+    tear_down
 elif [ $1 = "run-local-notebook" ]
 then
     run_local_notebook
