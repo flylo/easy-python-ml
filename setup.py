@@ -4,7 +4,7 @@ from distutils.core import setup
 
 setup(
     name='cream-python-models',
-    version='0.0.4',
+    version='0.0.5',
     author='Zac',
     packages=[
         'easy_ml',
