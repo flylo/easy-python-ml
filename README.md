@@ -1,4 +1,4 @@
-# easy-python-ml:0.0.4
+# easy-python-ml:0.0.5
 Quickly and easily spin up a notebook server in GCP.
 
 This repository includes utility functions for reading data from Google Cloud Storage.
@@ -18,7 +18,10 @@ See [instructions here](https://cloud.google.com/container-engine/docs/quickstar
 Run `pip install --upgrade bumpversion`
 
 ## Usage
-Use the `deployment.sh` script to orchestrate docker and run the notebook.
+
+- Make sure docker is running. Launch via `docker-machine`
+
+- Use the `deployment.sh` script to orchestrate docker and run the notebook.
 
 ```bash
 $ sh deployment.sh
