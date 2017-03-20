@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-image_version="0.0.5"
+image_version="0.0.6"
 project_name=`python scripts/lookup_value_from_json google_service_key.json project_id`
 repo_name="gcr.io/${project_name}/easy_ml"
 user_name="$( echo $USER | tr '[:upper:]' '[:lower:]')"
 cluster_name="${user_name}-ml-cluster"
 # This zone is set by default.
-zone="us-east1-b"
+zone=`gcloud config list |grep '^zone'|cut -d '=' -f 2|tr -d '[:space:]'`
 remote_image=`gcloud beta container images list-tags ${repo_name} | grep ${image_version} | tr -d '[:space:]'`
 
 echoRun() {
