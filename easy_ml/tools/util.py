@@ -1,6 +1,6 @@
 import os
 import logging
-from google.cloud import storage
+from google.cloud import storage, bigquery
 
 logger = logging.getLogger(__name__)
 

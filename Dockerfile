@@ -21,7 +21,7 @@ USER jovyan
 WORKDIR ${HOME}
 ENV HOME ${HOME}
 ENV CLOUDSDK_PYTHON_SITEPACKAGES 1
-ENV CLOUDSDK_PYTHON /usr/bin/python2.7
+ENV CLOUDSDK_PYTHON /usr/bin/python3
 ENV GOOGLE_APPLICATION_CREDENTIALS ${HOME}/google_service_key.json
 
 # Install the Google Cloud SDK. This has to go down here since we're installing as the jovyan user
