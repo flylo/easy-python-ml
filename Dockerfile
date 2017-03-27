@@ -11,7 +11,8 @@ RUN apt-get --allow-unauthenticated update \
   && apt-get install -yqq --no-install-recommends curl \
   && pip install google-cloud-bigquery \
   && pip install google-api-python-client \
-  && pip install google-cloud-storage
+  && pip install google-cloud-storage \
+  && pip install sparkey && pip install annoy
 
 
 ENV HOME /home/jovyan
