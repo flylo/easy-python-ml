@@ -11,9 +11,7 @@ RUN apt-get --allow-unauthenticated update \
   && apt-get install -yqq --no-install-recommends curl \
   && pip install google-cloud-bigquery \
   && pip install google-api-python-client \
-  && pip install google-cloud-storage \
-  && pip install sparkey && pip install annoy
-
+  && pip install google-cloud-storage
 
 ENV HOME /home/jovyan
 
@@ -38,6 +36,29 @@ ADD google_service_key.json ${HOME}/google_service_key.json
 ENV PATH google-cloud-sdk/bin:$PATH
 
 USER root
+
+# Annoy for nearest neighbor searches.
+RUN pip install annoy
+
+# Installing R tidyverse package. See https://github.com/jupyter/docker-stacks/tree/master/r-notebook AND rpy2
+RUN conda config --add channels r && \
+    conda install --quiet --yes \
+    'r-base=3.3.2' \
+    'r-irkernel=0.7*' \
+    'r-plyr=1.8*' \
+    'r-devtools=1.12*' \
+    'r-tidyverse=1.0*' \
+    'r-shiny=0.14*' \
+    'r-rmarkdown=1.2*' \
+    'r-forecast=7.3*' \
+    'r-rsqlite=1.1*' \
+    'r-reshape2=1.4*' \
+    'r-nycflights13=0.2*' \
+    'r-caret=6.0*' \
+    'r-rcurl=1.95*' \
+    'r-crayon=1.3*' \
+    'r-randomforest=4.6*' \
+    'rpy2=2.8.5' && conda clean -tipsy
 
 ADD easy_ml ${HOME}/easy_ml
 ADD test ${HOME}/test
