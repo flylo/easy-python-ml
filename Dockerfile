@@ -13,6 +13,7 @@ RUN apt-get --allow-unauthenticated update \
   && pip install google-cloud-storage \
   && pip3 install music21
 
+RUN pip install mido
 
 ENV HOME /home/jovyan
 

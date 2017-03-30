@@ -22,7 +22,11 @@ def download_from_gcs(bucket_name: str, prefix: str, local_fs_loc: str):
     for blob in bucket.list_blobs(prefix=prefix):
         if "_SUCCESS" in blob.name or "//" in blob.name:
             continue
-        download_location = os.path.join(local_fs_loc, blob.name.split('/')[-1])
+        split_blob_name = blob.name.split('/')
+        split_prefix = prefix.split('/')
+        writefile_name = "/".join([b for b in split_blob_name if b not in split_prefix])
+        download_location = os.path.join(local_fs_loc, writefile_name)
+        check_and_create_parent_folder(download_location)
         blob.download_to_filename(download_location)
 
 
