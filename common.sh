@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-image_version="0.0.9"
+image_version="0.0.10"
 project_name=`python scripts/lookup_value_from_json google_service_key.json project_id`
 repo_name="gcr.io/${project_name}/easy_ml"
 user_name="$( echo $USER | tr '[:upper:]' '[:lower:]')"

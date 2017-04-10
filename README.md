@@ -1,4 +1,4 @@
-# easy-python-ml:0.0.9
+# easy-python-ml:0.0.10
 Quickly and easily spin up a notebook server in GCP.
 
 This repository includes utility functions for reading data from Google Cloud Storage.

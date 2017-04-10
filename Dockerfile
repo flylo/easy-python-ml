@@ -9,9 +9,11 @@ ENV TERM linux
 
 RUN apt-get --allow-unauthenticated update \
   && apt-get install -yqq --no-install-recommends curl \
+  && pip install googleapis-common-protos \
   && pip install google-cloud-bigquery \
   && pip install google-api-python-client \
-  && pip install google-cloud-storage
+  && pip install google-cloud-storage \
+  && pip install fastavro
 
 ENV HOME /home/jovyan
 
