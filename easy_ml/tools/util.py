@@ -1,6 +1,6 @@
 import os
 import logging
-from google.cloud import storage
+from google.cloud import storage, bigquery
 
 logger = logging.getLogger(__name__)
 
@@ -14,7 +14,7 @@ def download_from_gcs(bucket_name: str, prefix: str, local_fs_loc: str):
     :return:
     """
 
-    check_and_create_parent_folder(local_fs_loc)
+    _check_and_create_parent_folder(local_fs_loc)
 
     client = storage.Client()
     bucket = client.get_bucket(bucket_name)
@@ -43,7 +43,7 @@ def copy_file_to_gcs(bucket_name: str,
     blob.upload_from_filename(filename=filename)
 
 
-def check_and_create_parent_folder(file_path: str) -> None:
+def _check_and_create_parent_folder(file_path: str) -> None:
     """
     Check that a file_path's parent folder exists and create it otherwise
 

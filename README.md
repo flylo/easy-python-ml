@@ -1,4 +1,4 @@
-# easy-python-ml:0.0.4
+# easy-python-ml:0.0.10
 Quickly and easily spin up a notebook server in GCP.
 
 This repository includes utility functions for reading data from Google Cloud Storage.
@@ -18,7 +18,10 @@ See [instructions here](https://cloud.google.com/container-engine/docs/quickstar
 Run `pip install --upgrade bumpversion`
 
 ## Usage
-Use the `deployment.sh` script to orchestrate docker and run the notebook.
+
+- Make sure docker is running. Launch via `docker-machine`
+
+- Use the `deployment.sh` script to orchestrate docker and run the notebook.
 
 ```bash
 $ sh deployment.sh
@@ -41,9 +44,7 @@ Usage: sh deployment.sh [patch|build|push|deploy|port-forward|tear-down|run-loca
 
   * To tear down a running notebook cluster, run `sh deployment.sh tear-down`
 
-  * To run the notebook locally, run `sh deployment.sh run-local-notebook`
-
-  **NOTE** Notebooks created on your local machine will not save automatically - they must be downloaded to persist.
+  * To run the notebook locally, run `sh deployment.sh run-local-notebook`. You never want to do this. Cause you can just run Jupyter in a virtualenv.**NOTE** Notebooks created on your local machine will not save automatically - they must be downloaded to persist.
 
 ## Versioning and Repo Integration
 To sync the contents of your persistent disk with your local machine (i.e. for versioning your notebooks and/or models), simply drop [the script in this gist](https://gist.github.com/flylo/effe612342a1e03beb449a62fc09cb5b) into the root directory of your repository.
